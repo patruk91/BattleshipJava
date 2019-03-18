@@ -18,9 +18,11 @@ __Instance methods__
     Constructs a Ship object
 
 * `getShipSquares(int x, int y, Ocean ocean, String direction, int shipLength)`
+    
     Add to `shipSquare` references to square objects building ship starting with
     square at position x,y
 
 * `isShipSunk()`
+    
     return boolean value true if ship is destroyed, false if is a float
 
