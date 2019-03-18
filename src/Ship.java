@@ -9,6 +9,6 @@ public class Ship {
     }
 
     public void getShipSquares(int x, int y, Ocean ocean, String direction, int shipLength) {
-        this.shipSquares.add(ocean.getSquare(this.x, this.y));
+        this.shipSquares.add(ocean.getSquare(x, y));
     }
 }

@@ -10,7 +10,7 @@ public class Ocean {
     public void createSquareMap() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                this.map[i][j] = new Square(i, j);
+                this.map[i][j] = new Square();
             }
         }
     }
