@@ -27,19 +27,35 @@ __Instance methods__
     Constructs a Square object
 
 * `setShipName(String ship name)`
+
     Setter for the `shipName` field
 
 * `setStatus(String status)`
+
     Setter for the `status` field
 
 * `getX()`
+
     Getter for the `x` field
 
 * `getY()`
+
     Getter for the `y` field
 
 * `getShipName()`
+
     Getter for the `shipName` field
 
-* `get()`
-    Getter for the `x` field
+* `getStatus()`
+
+    Getter for the `shipName` field
+
+* `toString`
+
+    Returns staus
+
+    Possible outputs:
+    - `" "`
+    - `"S"`
+    - `"X"`
+    - `"O"`
