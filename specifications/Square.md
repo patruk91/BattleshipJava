@@ -3,26 +3,23 @@
 
 __Attributes__
 
-* `x`
-    - data: int
-    - description: x index of row in Array[][]
-
-* `y`
-    - data: int
-    - description: y index of column in Array[][]
-
 * `shipName`: (default) `ocean`
     - data:String
     - description: indicator of being part of the ship or ocean
 
-* `status`
+* `myStatus`
     - data: String
     - description: sign of ship, empty, hit
+      S- ship, X - hit, # - sunk
 
+* `oponentStatus`
+    - data: String
+    - description: sign if square was hit at oponent ocean.
+                   " " - default, X - hit, # - sunk, O - miss
 
 __Instance methods__
 
-##### `Square(int x, int y)`
+##### `Square()`
 
     Constructs a Square object
 
@@ -30,25 +27,25 @@ __Instance methods__
 
     Setter for the `shipName` field
 
-* `setStatus(String status)`
+* `setMyStatus(String status)`
 
-    Setter for the `status` field
+    Setter for the `myStatus` field
 
-* `getX()`
+* `setOponentStatus(String status)`
 
-    Getter for the `x` field
-
-* `getY()`
-
-    Getter for the `y` field
+    Setter for the `oponentStatus` field
 
 * `getShipName()`
 
     Getter for the `shipName` field
 
-* `getStatus()`
+* `getMyStatus()`
 
-    Getter for the `shipName` field
+    Getter for the `myStatus` field
+
+* `getOponentStatus()`
+
+    Getter for the `oponentStatus` field
 
 * `toString`
 

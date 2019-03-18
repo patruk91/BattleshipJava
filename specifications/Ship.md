@@ -7,10 +7,6 @@ __Attributes__
     - data: List<Square>
     - description: list of reference to squares building ship
 
-* `isSunk`
-    - data: List<Square>
-    - description: list of reference to squares building ship
-
 __Instance methods__
 
 ##### `Ship(int x, int y, String direction, Ocean ocean, int length)`
@@ -21,8 +17,3 @@ __Instance methods__
     
     Add to `shipSquare` references to square objects building ship starting with
     square at position x,y
-
-* `isShipSunk()`
-    
-    return boolean value true if ship is destroyed, false if is a float
-

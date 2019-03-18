@@ -1,37 +1,34 @@
 public class Square {
-    private int x;
-    private int y;
     private String shipName = "ocean";
-    private String status = " ";
+    private String myStatus = " ";
+    private String oponentStatus = " ";
 
 
-    public Square(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Square() {
     }
 
     public void setShipName(String shipName) {
         this.shipName = shipName;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setMyStatus(String status) {
+        this.status = myStatus;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
+    public void setOponentStatus(String status) {
+        this.status = oponentStatus;
     }
 
     public String getShipName() {
         return shipName;
     }
 
-    public String getStatus() {
-        return status;
+    public String getMyStatus() {
+        return myStatus;
+    }
+
+    public String getOponentStatus() {
+        return oponentStatus;
     }
 
     @Override
