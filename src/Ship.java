@@ -2,20 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Ship {
-    private int x;
-    private int y;
-    private String direction;
+    boolean isSunk = false;
     private List<Square> shipSquares;
 
-    Ship(int x, int y, String direction, Ocean ocean) {
-        this.x = x;
-        this.y = y;
-        this.direction = direction;
-        getShipSquares(ocean, direction);
+    Ship(int x, int y, String direction, Ocean ocean, int length) {
+        getShipSquares(x, y, ocean, direction, length);
     }
 
-    public void getShipSquares(Ocean ocean, String direction) {
+    public void getShipSquares(int x, int y, Ocean ocean, String direction, int shipLength) {
         this.shipSquares.add(ocean.getSquare(this.x, this.y));
+    }
+
+    public boolean isShipSunk() {
+        return this.isSunk;
     }
 
 
