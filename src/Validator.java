@@ -4,7 +4,7 @@ public class Validator {
     }
 
     public boolean validateString(String input) {
-        // check if string is empty
+        return !input.isBlank();
     }
 
     public boolean validateStringInRange(String input) {
@@ -20,6 +20,6 @@ public class Validator {
     }
 
     public boolean checkCoordinates(String[] coordinates) {
-        // test coordinates given ad 
+        // test coordinates given as String[2] 
     }
 }
