@@ -4,7 +4,10 @@ public class Reader {
     Scanner reader = new Scanner(System.in);
 
     public readString(){
-        // return string        
+        System.out.println("Please provide data: ");
+        String userInput = reader.nextLine();
+        reader.close();
+
     }
 
     public readStringFromUser(){
