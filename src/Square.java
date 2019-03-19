@@ -15,7 +15,7 @@ public class Square {
         this.myStatus = myStatus;
     }
 
-    public void setopponentStatus(String opponentStatus) {
+    public void setOpponentStatus(String opponentStatus) {
         this.opponentStatus = opponentStatus;
     }
 
@@ -27,7 +27,7 @@ public class Square {
         return myStatus;
     }
 
-    public String getopponentStatus() {
+    public String getOpponentStatus() {
         return opponentStatus;
     }
 }
