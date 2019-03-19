@@ -7,6 +7,7 @@ public class Reader {
         System.out.println("Please provide data: ");
         String userInput = reader.nextLine();
         reader.close();
+        return userInput;
 
     }
 
