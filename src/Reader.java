@@ -1,12 +1,12 @@
 import java.util.*;
 
 public class Reader {
-    Scanner reader = new Scanner(System.in);
+    Scanner read = new Scanner(System.in);
 
     public readString(){
         System.out.println("Please provide data: ");
-        String userInput = reader.nextLine();
-        reader.close();
+        String userInput = read.nextLine();
+        read.close();
         return userInput;
 
     }

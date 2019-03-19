@@ -2,20 +2,23 @@ public class Player {
     Ocean ocean;
     String name;
 
+    public static void main(String[] args) {
+        // USE IT TO TEST ONLY
+
+        String name = getName();
+        System.out.println(name);
+    }
     public Player() {
         ocean = new Ocean();
         this.name = name;
-    }
-    public Ocean() {
-        this.ocean = ocean;
-    }
 
-    public getName(String name){
-        // ask for user name
+    public String getName(){
+        System.out.println("Hey, what's your name?");
+        String userName = Reader.readString();
         return userName;
     }
 
-    public getOcean(Ocean ocean){
+    public Ocean getOcean(Ocean ocean){
         // handle grid data
         return oceanData;
     }
@@ -26,8 +29,8 @@ public class Player {
         // make changes on map
     }
 
-    public shipPlacement(int x, int y, String diretion, Ocean ocean, String shipName){
-        return ocean;
+    public Ocean shipPlacement(int x, int y, String diretion, Ocean ocean, String shipName){
+        return ship;
     }
 
     
