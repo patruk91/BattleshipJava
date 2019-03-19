@@ -1539,7 +1539,7 @@
 											"top": 669,
 											"width": 341.6689453125,
 											"height": 13,
-											"text": "+testShipPlacement(x, y, length, directory, Ocean): boolean",
+											"text": "+testShipPlacement(x, y, length, directory): boolean",
 											"horizontalAlignment": 0
 										}
 									],
@@ -6977,8 +6977,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFplU1UpEiFIpY="
 									},
-									"name": "x",
-									"type": ""
+									"name": "x"
 								},
 								{
 									"_type": "UMLParameter",
@@ -6986,8 +6985,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFplU1UpEiFIpY="
 									},
-									"name": "y",
-									"type": ""
+									"name": "y"
 								},
 								{
 									"_type": "UMLParameter",
@@ -6995,8 +6993,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFplU1UpEiFIpY="
 									},
-									"name": "length",
-									"type": ""
+									"name": "length"
 								},
 								{
 									"_type": "UMLParameter",
@@ -7004,17 +7001,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFplU1UpEiFIpY="
 									},
-									"name": "directory",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFplU1hjElohr8=",
-									"_parent": {
-										"$ref": "AAAAAAFplU1UpEiFIpY="
-									},
-									"name": "Ocean",
-									"type": ""
+									"name": "directory"
 								},
 								{
 									"_type": "UMLParameter",
