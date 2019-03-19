@@ -9,7 +9,7 @@ public class Ocean {
 
     public Ocean() {
         this.map = new Square[10][10];
-        this.ships = new HashMap<>();
+        this.ships = new HashMap<String, Ship>();
         this.isGameOver = false;
     }
 
@@ -53,20 +53,16 @@ public class Ocean {
             final int EXTRA_SQUARES = 2;
             int totalLinesToCheck = getLinesToCheck(direction, shipLength, EXTRA_SQUARES);
             int squaresInLineToCheck = getSquaresToCheck(direction, shipLength, EXTRA_SQUARES);
-            int startX = getStartXPosition(x);
-            int startY = getStartYPosition(y);
 
-            for (int line = 1; line <= totalLinesToCheck; line++) {
-                for (int square = 1; square <= squaresInLineToCheck; square++) {
-                    if (!((x - 1) < 0 && (y - 1) < 0)) {
+            for (int startY = getStartYPosition(y); startY <= totalLinesToCheck; startY++) {
+                for (int startX = getStartXPosition(x); startX <= squaresInLineToCheck; startX++) {
+                    if (!((startY) < 0 && (startX) < 0)) {
                         if (!(getSquare(startX, startY).getShipName().equals("ocean"))) {
+                            // or StartY, StartX
                             return false;
                         }
-                    } else {
-                        startX += square;
                     }
                 }
-                startY += line;
             }
             return true;
         }
