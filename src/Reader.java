@@ -3,7 +3,7 @@ import java.util.*;
 public class Reader {
     Scanner read = new Scanner(System.in);
 
-    public readString(){
+    private String readString(){
         System.out.println("Please provide data: ");
         String userInput = read.nextLine();
         read.close();
@@ -11,16 +11,21 @@ public class Reader {
 
     }
 
-    public readStringFromUser(){
-        // return strin
+    public String getStringFromUser(String userString){
+        System.out.println("Please provide data: ");
+        userString = reader.nextLine();
+        reader.close();
+        return userString;
     }
 
-    public readIntFromUser(){
-        // return int
+    public Integer getIntFromUser(){
+        int userInteger = 0;
+        return userInteger;
     }
 
-    public getUserCoordinates(){
-        // return int2
+    public Integer getUserCoordinates(){
+        int userInteger2 = 0;
+        return userInteger2;
 
     }
 
