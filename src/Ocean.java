@@ -77,6 +77,23 @@ public class Ocean {
         return false;
     }
 
+    private int getLinesToCheck(String direction, int shipLength, int extraSquares) {
+        final int HORIZONTAL_LINES_TO_CHECK = 3;
+        if (direction.equalsIgnoreCase("h")) {
+            return HORIZONTAL_LINES_TO_CHECK;
+        } else {
+            return shipLength + extraSquares;
+        }
+    }
+
+    private int getSquaresToCheck(String direction, int shipLength, int extraSquares) {
+        final int VERTICAL_SQUARES_TO_CHECK = 3;
+        if (direction.equalsIgnoreCase("h")) {
+            return shipLength + extraSquares;
+        } else {
+            return VERTICAL_SQUARES_TO_CHECK;
+        }
+    }
 
 
 
