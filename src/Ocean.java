@@ -24,15 +24,15 @@ public class Ocean {
         return this.map[x][y];
     }
 
-    public void setIsGameOver(boolean gameOver) {
-        this.isGameOver = gameOver;
-    }
-
     public boolean isGameOver() {
         return this.isGameOver;
     }
 
-    public boolean checkIfAllShipsSunk() {
+    public void setIsGameOver(boolean gameOver) {
+        this.isGameOver = gameOver;
+    }
+
+    private boolean checkIfAllShipsSunk() {
         for (Map.Entry<String, Ship> entry : this.ships.entrySet()) {
             if (!entry.getValue().isDestroyed()) {
                 return false;
@@ -41,13 +41,19 @@ public class Ocean {
         return true;
     }
 
+    public void changeGameStatus() {
+        if (checkIfAllShipsSunk()) {
+            setIsGameOver(true);
+        }
+    }
+
     public boolean testShipPlacement(int x, int y, int length, String direction) {
-        int border = 10;
+        final int BORDER = 10;
 
         if (direction.equalsIgnoreCase("h")) {
-            return (x + length) < border;
+            return (x + length) < BORDER;
         } else if (direction.equalsIgnoreCase("v")) {
-            return (y + length) < border;
+            return (y + length) < BORDER;
         } else {
             return false;
         }
