@@ -56,10 +56,6 @@ public class Ocean {
             int startX = getStartXPosition(x);
             int startY = getStartYPosition(y);
 
-            int startX = x - 1;
-            int startY = y - 1;
-
-
             for (int line = 1; line <= totalLinesToCheck; line++) {
                 for (int square = 1; square <= squaresInLineToCheck; square++) {
                     if (!((x - 1) < 0 && (y - 1) < 0)) {
@@ -75,6 +71,16 @@ public class Ocean {
             return true;
         }
         return false;
+    }
+
+    private int getStartXPosition(int x) {
+        final int BACK_X_POSITION = 1;
+        return x - BACK_X_POSITION;
+    }
+
+    private int getStartYPosition(int y) {
+        final int BACK_Y_POSITION = 1;
+        return y - BACK_Y_POSITION;
     }
 
     private int getLinesToCheck(String direction, int shipLength, int extraSquares) {
@@ -94,8 +100,6 @@ public class Ocean {
             return VERTICAL_SQUARES_TO_CHECK;
         }
     }
-
-
 
     private boolean checkIfShipInMap(int x, int y, int length, String direction) {
         final int BORDER = 10;
@@ -122,9 +126,5 @@ public class Ocean {
         }
         return stringBuilder.toString();
     }
-
-
-
-
 
 }
