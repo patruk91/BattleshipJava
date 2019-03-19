@@ -12,6 +12,7 @@ public class Ship {
     public void getShipSquares(int x, int y, Ocean ocean, String direction, int shipLength) {
         for (int i = 0; i < shipLength; i++) {
             this.shipSquares.add(ocean.getSquare(x, y));
+            ocean.getSquare(x, y).setMyStatus("S");
             if (direction.equals("horizontal")) {
                 y++;
             } else {
@@ -27,5 +28,19 @@ public class Ship {
             }
         }
         return true;
+    }
+
+    public void markHit(Square square) {
+        square.setMyStatus("X");
+        square.setOponentStatus("X");
+        if (this.isDestroyed()) {
+            this.markAsSunk();
+        }
+    }
+
+    private void markAsSunk() {
+        for (Square square: shipSquares) {
+            square.setMyStatus("#");
+        }
     }
 }
