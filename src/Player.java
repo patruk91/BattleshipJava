@@ -1,36 +1,32 @@
 public class Player {
     Ocean ocean;
     String name;
+    Reader reader = new Reader();
 
-    public static void main(String[] args) {
-        // USE IT TO TEST ONLY
-
-        String name = getName();
-        System.out.println(name);
-    }
     public Player() {
-        ocean = new Ocean();
+        this.ocean = new Ocean();
         this.name = name;
+        
+    }
 
-    public String getName(){
+    public String getName() {
         System.out.println("Hey, what's your name?");
-        String userName = Reader.readString();
-        return userName;
+        this.name = reader.getStringFromUser();
+        return this.name;
     }
 
-    public Ocean getOcean(Ocean ocean){
-        // handle grid data
-        return oceanData;
+    public Ocean getOcean(){
+        return this.ocean;
     }
 
-    public void shoot(String Coordinates){
+    public void shoot(String convertedCoordinates){
         // ask for coordinates, use Reader class
         // check if square is ocean or ship
         // make changes on map
     }
 
     public Ocean shipPlacement(int x, int y, String diretion, Ocean ocean, String shipName){
-        return ship;
+        return this.ocean;
     }
 
     

@@ -1,19 +1,20 @@
 import java.util.*;
 
 public class Reader {
-    Scanner read = new Scanner(System.in);
+    Scanner reader = new Scanner(System.in);
+    
 
     private String readString(){
         System.out.println("Please provide data: ");
-        String userInput = read.nextLine();
-        read.close();
+        String userInput = reader.nextLine();
+        reader.close();
         return userInput;
 
     }
 
-    public String getStringFromUser(String userString){
+    public String getStringFromUser(){
         System.out.println("Please provide data: ");
-        userString = reader.nextLine();
+        String userString = reader.nextLine();
         reader.close();
         return userString;
     }
