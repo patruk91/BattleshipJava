@@ -1,4 +1,8 @@
 public class Validator {
+    private final String LETTER_COORDS_REGEX = "[abcdefghij]{1}";
+    private final String DIRECTION_REGEX = "[hv]{1}";
+
+    
     public Validator() {
 
     }
@@ -7,19 +11,39 @@ public class Validator {
         return !input.isBlank();
     }
 
-    public boolean validateStringInRange(String input) {
-        // test if input is of specified value
+    public boolean validateStringInRange(String input, String regex) {
+        if (input.matches(regex)) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isNumeric(String input) {
-        // test if input String is of numeric value
+        if (input.matches("[\\d]+")) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isNumberInRange(int start, int end, int input) {
-        // test if int input is in range int start <-> int end
+        if (start <= input && input <= end) {
+            return true;
+        }
+        return false;
     }
 
     public boolean checkCoordinates(String[] coordinates) {
-        // test coordinates given as String[2] 
+        boolean letterCoordinate = validateStringInRange(coordinates[0], LETTER_COORDS_REGEX);
+        boolean numericCoordinate = false;
+        if (isNumeric(coordinates[1])) {
+            int tempNumericValue = Integer.parseInt(coordinates[1]);
+            if (isNumberInRange(1, 10, tempNumericValue)) {
+                numericCoordinate = true;
+            }
+        } 
+        if (letterCoordinate && numericCoordinate) {
+            return true;
+        }
+        return false;
     }
 }
