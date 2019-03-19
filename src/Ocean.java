@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Ocean {
@@ -47,9 +48,40 @@ public class Ocean {
         }
     }
 
-    public boolean testShipPlacement(int x, int y, int length, String direction) {
-        final int BORDER = 10;
+    public boolean testShipPlacement(int x, int y, int shipLength, String direction) {
+        if (checkIfShipInMap(x, y, shipLength, direction)) {
+            final int EXTRA_SQUARES = 2;
+            int totalLinesToCheck = getLinesToCheck(direction, shipLength, EXTRA_SQUARES);
+            int squaresInLineToCheck = getSquaresToCheck(direction, shipLength, EXTRA_SQUARES);
+            int startX = getStartXPosition(x);
+            int startY = getStartYPosition(y);
 
+            int startX = x - 1;
+            int startY = y - 1;
+
+
+            for (int line = 1; line <= totalLinesToCheck; line++) {
+                for (int square = 1; square <= squaresInLineToCheck; square++) {
+                    if (!((x - 1) < 0 && (y - 1) < 0)) {
+                        if (!(getSquare(startX, startY).getShipName().equals("ocean"))) {
+                            return false;
+                        }
+                    } else {
+                        startX += square;
+                    }
+                }
+                startY += line;
+            }
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+    private boolean checkIfShipInMap(int x, int y, int length, String direction) {
+        final int BORDER = 10;
         if (direction.equalsIgnoreCase("h")) {
             return (x + length) < BORDER;
         } else if (direction.equalsIgnoreCase("v")) {
