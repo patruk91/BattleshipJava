@@ -30,9 +30,4 @@ public class Square {
     public String getOponentStatus() {
         return oponentStatus;
     }
-
-    @Override
-    public String toString() {
-        return myStatus + oponentStatus; // Need to be split in to 2 views
-    }
 }
