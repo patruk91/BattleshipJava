@@ -1,7 +1,7 @@
 public class Square {
     private String shipName = "ocean";
     private String myStatus = " ";
-    private String oponentStatus = " ";
+    private String opponentStatus = " ";
 
 
     public Square() {
@@ -15,8 +15,8 @@ public class Square {
         this.myStatus = myStatus;
     }
 
-    public void setOponentStatus(String oponentStatus) {
-        this.oponentStatus = oponentStatus;
+    public void setOpponentStatus(String opponentStatus) {
+        this.opponentStatus = opponentStatus;
     }
 
     public String getShipName() {
@@ -27,12 +27,7 @@ public class Square {
         return myStatus;
     }
 
-    public String getOponentStatus() {
-        return oponentStatus;
-    }
-
-    @Override
-    public String toString() {
-        return myStatus + oponentStatus; // Need to be split in to 2 views
+    public String getOpponentStatus() {
+        return opponentStatus;
     }
 }
