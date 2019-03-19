@@ -9,12 +9,12 @@ public class Ship {
         getShipSquares(x, y, ocean, direction, length, shipName);
     }
 
-    public void getShipSquares(int x, int y, Ocean ocean, String direction, int shipLength, String shipName) {
+    private void getShipSquares(int x, int y, Ocean ocean, String direction, int shipLength, String shipName) {
         for (int i = 0; i < shipLength; i++) {
             this.shipSquares.add(ocean.getSquare(x, y));
             ocean.getSquare(x, y).setMyStatus("S");
             ocean.getSquare(x, y).setShipName(shipName);
-            if (direction.equals("horizontal")) {
+            if (direction.equalsIgnoreCase("h")) {
                 y++;
             } else {
                 x++;
@@ -23,7 +23,7 @@ public class Ship {
     }
 
     public boolean isDestroyed() {
-        for (Square square: shipSquares) {
+        for (Square square: this.shipSquares) {
             if (square.getMyStatus().equals("S")) {
                 return false;
             }
@@ -40,7 +40,7 @@ public class Ship {
     }
 
     private void markAsSunk() {
-        for (Square square: shipSquares) {
+        for (Square square: this.shipSquares) {
             square.setMyStatus("#");
         }
     }
