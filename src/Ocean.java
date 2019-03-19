@@ -59,15 +59,19 @@ public class Ocean {
         }
     }
 
-    public String myMap() {
-        String mapResult = "";
+    public String mapToString(String view) {
+        StringBuilder stringBuilder = new StringBuilder();
         for (Square[] row : this.map) {
             for (Square column : row) {
-                mapResult += column.getMyStatus();
+                if (view.equals("ship")) {
+                    stringBuilder.append(column.getMyStatus());
+                } else {
+                    stringBuilder.append(column.getOpponentStatus());
+                }
             }
-            mapResult += "\n";
+            stringBuilder.append("\n");
         }
-        return mapResult;
+        return stringBuilder.toString();
     }
 
 
