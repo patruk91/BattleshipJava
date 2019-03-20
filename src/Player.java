@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class Player {
     private Ocean ocean;
     private String name;
@@ -6,7 +9,6 @@ public class Player {
     public Player(String name, View viewer) {
         this.ocean = new Ocean();
         this.name = name;
-        this reader = new Reader();
         this.viewer = viewer;
     }
 
