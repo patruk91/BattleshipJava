@@ -26,6 +26,8 @@ public class Player {
             List<Square> shipSquares = getShipSquares(coordinates, direction, shipLength, shipName);
             Ship ship = new Ship(shipSquares);
             this.ocean.add(shipName, ship);
+        } else {
+            viewer.printError("Ship cannot be placed");
         }
     }
 
