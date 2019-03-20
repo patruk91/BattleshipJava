@@ -4,7 +4,7 @@ import java.util.Map;
 public class Ocean {
     private Square[][] map;
     private Map<String, Ship> ships;
-    boolean isGameOver;
+    private boolean isGameOver;
 
     public Ocean() {
         this.map = new Square[10][10];
