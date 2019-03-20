@@ -10,14 +10,14 @@ public class View {
                            "3. Credits");
     }
 
-    public void prntChoseGame() {
+    public void printGameModes() {
         System.out.println("Game modes:" +
                            "1. Player vs Player\n" +
                            "2. Player vs Computer\n" +
                            "3. Computer vs Computer");
     }
 
-    public void prontChoseDifficulty() {
+    public void printGameDifficulty() {
         System.out.println("Game difficulty:" +
                            "1. Player vs Player\n" +
                            "2. Player vs Computer\n" +
@@ -25,10 +25,14 @@ public class View {
     }
 
     public void printQuestion(String question) {
-        System.out.print(question + ": ");
+        System.out.print(question + "?: ");
     }
 
     public void printError(String error) {
         System.out.println(("Error: " + error));
+    }
+
+    public void printMap(String map) {
+        System.out.println(map);
     }
 }
