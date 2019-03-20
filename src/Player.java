@@ -18,7 +18,8 @@ public class Player {
         return this.ocean;
     }
 
-    public void shoot(String convertedCoordinates){
+    public void shoot(String coordinates){
+        this.ocean.handleShoot(coordinates);
     }
 
     public void shipPlacement(Coordinates coordinates, String direction, String shipName, int shipLength){
