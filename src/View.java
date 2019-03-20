@@ -7,7 +7,8 @@ public class View {
         System.out.println("Main menu:\n" +
                            "1. New game\n" +
                            "2. High score\n" +
-                           "3. Credits");
+                           "3. Credits\n" +
+                           "4. Exit");
     }
 
     public void printGameModes() {
@@ -19,9 +20,16 @@ public class View {
 
     public void printGameDifficulty() {
         System.out.println("Game difficulty:\n" +
-                           "1. Player vs Player\n" +
-                           "2. Player vs Computer\n" +
-                           "3. Computer vs Computer");
+                           "1. Easy\n" +
+                           "2. Medium\n");
+    }
+
+    public void printHighscore() {
+        System.out.println("Highscore");
+    }
+
+    public void printCredits() {
+        System.out.println("Krzysiek\nPatryk\nPaweł");
     }
 
     public void printQuestion(String question) {
