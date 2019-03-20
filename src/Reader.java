@@ -8,7 +8,6 @@ public class Reader {
     }
 
     private String readString(){
-        System.out.println("Please provide data: ");
         String userInput = this.reader.nextLine();
         reader.close();
         return userInput;
@@ -20,12 +19,10 @@ public class Reader {
     }
 
     public Integer getIntFromUser(){
-        int userInteger = 0;
         return userInteger;
     }
 
     public Integer getUserCoordinates(){
-        int userInteger2 = 0;
         return userInteger2;
 
     }
