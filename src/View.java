@@ -25,6 +25,14 @@ public class View {
                            "3. Computer vs Computer");
     }
 
+    public void printHighscore() {
+        System.out.println("Highscore");
+    }
+
+    public void printCredits() {
+        System.out.println("Krzysiek\nPatryk\nPaweł");
+    }
+
     public void printQuestion(String question) {
         System.out.print(question + "?: ");
     }
