@@ -15,8 +15,8 @@ public class Reader {
 
     private String readString(){
         return this.reader.nextLine();
-
     }
+
 
     public String getNameFromUser(){
         String userInput = "";

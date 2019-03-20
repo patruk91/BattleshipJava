@@ -3,43 +3,37 @@ import java.util.TreeMap;
 
 public class Controller {
     private boolean restartGame;
+    private View view;
+    private Reader reader;
+    private ControllerHelper controllerHelper;
 
     public Controller() {
         this.restartGame = false;
+        this.view = new View();
+        this.reader = new Reader(this.view);
+        this.controllerHelper = new ControllerHelper();
 
     }
-
-
-
 
     public void runner() {
-        View view = new View();
-        Reader reader = new Reader(view);
-        ControllerHelper controllerHelper = new ControllerHelper();
-
-
-
         while (!this.restartGame) {
             handleMainOption(reader, view);
-
-
         }
-
     }
 
-    private void handleMainOption(Reader reader, View view) {
-        view.printMenu();
-        view.printQuestion("Option");
-        int option = reader.getIntFromUser(1, 4);
+    private void handleMainOption() {
+        this.view.printMenu();
+        this.view.printQuestion("Option");
+        int option = this.reader.getIntFromUser(1, 4);
         switch (option) {
             case 1:
-                handleGameModes(view, reader);
+                handleGameModes();
                 break;
             case 2:
-                view.printHighscore();
+                this.view.printHighscore();
                 break;
             case 3:
-                view.printCredits();
+                this.view.printCredits();
                 break;
             case 4:
                 this.restartGame = true;
@@ -48,38 +42,47 @@ public class Controller {
         }
     }
 
-    private void handleGameModes(View view, Reader reader) {
-        view.printGameModes();
-        int gameModes = reader.getIntFromUser(1, 3);
-        view.printQuestion("Choose your game mode");
+    private void handleGameModes() {
+        this.view.printGameModes();
+        int gameModes = this.reader.getIntFromUser(1, 3);
+        this.view.printQuestion("Choose your game mode");
         switch (gameModes) {
             case 1:
                 playerVsPlayer();
                 break;
             case 2:
-                handleGameDifficulty(view, reader, gameModes);
+                handleGameDifficulty(gameModes);
                 break;
             case 3:
-                handleGameDifficulty(view, reader, gameModes);
+                handleGameDifficulty(gameModes);
                 break;
         }
     }
 
-    private void handleGameDifficulty(View view, Reader reader, int gameModes) {
-        view.printGameDifficulty();
-        int gameDifficulty = reader.getIntFromUser(1, 2);
+    private void handleGameDifficulty(int gameModes) {
+        this.view.printGameDifficulty();
+        int gameDifficulty = this.reader.getIntFromUser(1, 2);
 
         switch (gameModes) {
             case 2:
-                playerVsComputer(gameDifficulty);
+//                playerVsComputer(gameDifficulty);
                 break;
             case 3:
-                computerVsComputer(gameDifficulty);
+//                computerVsComputer(gameDifficulty);
                 break;
         }
     }
 
+    private void playerVsPlayer() {
 
+        this.view.printQuestion("Player one: what's is your name");
+        this.reader.
+
+        Player playerOne = new Player()
+
+        this.view.printQuestion("Player two: what's is your name");
+
+    }
 
 
 }
