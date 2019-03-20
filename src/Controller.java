@@ -6,12 +6,14 @@ public class Controller {
     private View view;
     private Reader reader;
     private ControllerHelper controllerHelper;
+    private Randomizer randomizer;
 
     public Controller() {
         this.restartGame = false;
         this.view = new View();
         this.reader = new Reader(this.view);
         this.controllerHelper = new ControllerHelper();
+        this.randomizer = new Randomizer();
 
     }
 
@@ -75,29 +77,47 @@ public class Controller {
         Player playerOne = createPlayer("Player one: what's is your name");
         Player playerTwo = createPlayer("Player two: what's is your name");
 
-
         String placement  = this.reader.getStringFromUser(
                 "Do you want put your ship automatically (y/n)", "[yn]{1}");
 
-        this.view.printMap(playerOne.getOcean().mapToString("ship"));
+        putShipsOnMap(playerOne, placement.equals("y"));
+
+
+
+    }
+
+    private void putShipsOnMap(Player player, boolean automate) {
+        Coordinates getCoordinates = randomizer.getRandomCoordantes();
+        String direction = randomizer.getRandomDirection();
+
+        if (!automate) {
+            this.view.printMap(player.getOcean().mapToString("ship"));
+        }
+
         for (Map.Entry<String, Integer> entry : controllerHelper.getShipNamesWithLength().entrySet()) {
             boolean isShipPlaced = false;
             while (!isShipPlaced) {
-                String questionShip = "Please provide a coordinate for" + entry.getKey() + ", length: " + entry.getValue() + " (e.g A1)";
+                if (automate) {
+                    getCoordinates = randomizer.getRandomCoordantes();
+                    direction = randomizer.getRandomDirection();
 
-                Coordinates getCoordinates = reader.getUserCoordinates(questionShip);
-                String direction = this.reader.getStringFromUser("Vertically or horizontally (h/v)", "[hv]{1}");
+                } else {
+                    String questionShip = "Please provide a coordinate for " + entry.getKey() + ", length: " + entry.getValue() + " (e.g A1)";
+                    getCoordinates = reader.getUserCoordinates(questionShip);
+                    direction = this.reader.getStringFromUser("Vertically or horizontally (h/v)", "[hv]{1}");
+                }
 
+                isShipPlaced = player.shipPlacement(getCoordinates, direction, entry.getKey(), entry.getValue(), automate);
 
-                isShipPlaced = playerOne.shipPlacement(getCoordinates, direction, entry.getKey(), entry.getValue());
-                this.view.printMap(playerOne.getOcean().mapToString("ship"));
+                if (!automate) {
+                    this.view.printMap(player.getOcean().mapToString("ship"));
+
+                }
             }
-
         }
-
-
-
-
+        if (automate) {
+            this.view.printMap(player.getOcean().mapToString("ship"));
+        }
     }
 
 

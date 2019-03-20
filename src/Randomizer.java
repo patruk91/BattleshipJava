@@ -14,7 +14,7 @@ public class Randomizer {
     }
 
     public String getRandomDirection() {
-        int directionInt = this.random.nextInt(1);
+        int directionInt = this.random.nextInt(2);
         String direction = (directionInt < 1)? "h" : "v";
         return direction;
     }

@@ -24,14 +24,16 @@ public class Player {
         this.ocean.handleShoot(coordinates);
     }
 
-    public boolean shipPlacement(Coordinates coordinates, String direction, String shipName, int shipLength){
+    public boolean shipPlacement(Coordinates coordinates, String direction, String shipName, int shipLength, boolean automate){
         if (this.ocean.testShipPlacement(coordinates, shipLength, direction)){
             List<Square> shipSquares = getShipSquares(coordinates, direction, shipLength, shipName);
             Ship ship = new Ship(shipSquares);
             this.ocean.addShip(shipName, ship);
             return true;
         } else {
-            viewer.printError("Ship cannot be placed");
+            if (!automate) {
+                viewer.printError("Ship cannot be placed");
+            }
             return false;
         }
     }
