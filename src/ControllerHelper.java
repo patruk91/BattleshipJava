@@ -1,3 +1,4 @@
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -8,7 +9,7 @@ public class ControllerHelper {
     }
 
     public Map<String, Integer> getShipNamesWithLength() {
-        Map<String, Integer> shipNames = new TreeMap<>();
+        Map<String, Integer> shipNames = new LinkedHashMap<>();
         shipNames.put("Carrier", 5);
         shipNames.put("Battleship", 4);
         shipNames.put("Cruiser", 3);

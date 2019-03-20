@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -13,10 +14,11 @@ public class ReaderHelper {
     public Coordinates convertCoordinates(String[] coordinates) {
         Map<String, Integer> lettersToNumbers = new HashMap<String, Integer>();
         for (int i = 0; i < 10; i++) {
-            lettersToNumbers.put(Character.toString((char) i+65), i);
+            lettersToNumbers.put(Character.toString((char) i+97), i);
         }
-        int numericCoordinate = Integer.parseInt(coordinates[1]);
+        int numericCoordinate = Integer.parseInt(coordinates[1]) - 1;
         int letterCoordinate = lettersToNumbers.get(coordinates[0]);
+        System.out.println(letterCoordinate + " " + numericCoordinate);
         return new Coordinates(letterCoordinate, numericCoordinate);
     }
 }

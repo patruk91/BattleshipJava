@@ -10,6 +10,7 @@ public class Ocean {
         this.map = new Square[10][10];
         this.ships = new HashMap<String, Ship>();
         this.isGameOver = false;
+        this.createSquareMap();
     }
 
     public void createSquareMap() {
@@ -71,7 +72,7 @@ public class Ocean {
 
             for (int startY = getStartYPosition(coordinates); startY <= totalLinesToCheck; startY++) {
                 for (int startX = getStartXPosition(coordinates); startX <= squaresInLineToCheck; startX++) {
-                    if (!((startY) < 0 && (startX) < 0)) {
+                    if (startY > 0 && startX > 0) {
                         if (!(getSquare(startX, startY).getShipName().equals("ocean"))) {
                             // or StartY, StartX
                             return false;
@@ -125,16 +126,32 @@ public class Ocean {
 
     public String mapToString(String view) {
         StringBuilder stringBuilder = new StringBuilder();
+        char[] alphabet  = "ABCDEFGHIJ".toCharArray();
+
+
+        for (int i = 1; i < 11; i++) {
+            stringBuilder.append(" | " + i);
+        }
+        stringBuilder.append("|\n");
+
+        int i = 0;
+
         for (Square[] row : this.map) {
+            stringBuilder.append("-".repeat(42) + "\n");
+            stringBuilder.append(alphabet[i]);
+            i++;
             for (Square column : row) {
                 if (view.equals("ship")) {
-                    stringBuilder.append(column.getMyStatus());
+
+                    stringBuilder.append("| " + column.getMyStatus() + " ");
                 } else {
-                    stringBuilder.append(column.getOpponentStatus());
+                    stringBuilder.append("| " + column.getOpponentStatus() + " ");
                 }
             }
+            stringBuilder.append("|");
             stringBuilder.append("\n");
         }
+        stringBuilder.append("-".repeat(42));
         return stringBuilder.toString();
     }
 

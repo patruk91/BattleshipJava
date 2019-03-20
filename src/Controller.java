@@ -23,8 +23,7 @@ public class Controller {
 
     private void handleMainOption() {
         this.view.printMenu();
-        this.view.printQuestion("Option");
-        int option = this.reader.getIntFromUser(1, 4);
+        int option = this.reader.getIntFromUser("Option", 1, 4);
         switch (option) {
             case 1:
                 handleGameModes();
@@ -44,8 +43,7 @@ public class Controller {
 
     private void handleGameModes() {
         this.view.printGameModes();
-        int gameModes = this.reader.getIntFromUser(1, 3);
-        this.view.printQuestion("Choose your game mode");
+        int gameModes = this.reader.getIntFromUser("Choose your game mode", 1, 3);
         switch (gameModes) {
             case 1:
                 playerVsPlayer();
@@ -61,7 +59,7 @@ public class Controller {
 
     private void handleGameDifficulty(int gameModes) {
         this.view.printGameDifficulty();
-        int gameDifficulty = this.reader.getIntFromUser(1, 2);
+        int gameDifficulty = this.reader.getIntFromUser("Choose your game difficulty", 1, 2);
 
         switch (gameModes) {
             case 2:
@@ -74,14 +72,37 @@ public class Controller {
     }
 
     private void playerVsPlayer() {
-
         Player playerOne = createPlayer("Player one: what's is your name");
         Player playerTwo = createPlayer("Player two: what's is your name");
+
+
+        String placement  = this.reader.getStringFromUser(
+                "Do you want put your ship automatically (y/n)", "[yn]{1}");
+
+        this.view.printMap(playerOne.getOcean().mapToString("ship"));
+        for (Map.Entry<String, Integer> entry : controllerHelper.getShipNamesWithLength().entrySet()) {
+            boolean isShipPlaced = false;
+            while (!isShipPlaced) {
+                String questionShip = "Please provide a coordinate for" + entry.getKey() + ", length: " + entry.getValue() + " (e.g A1)";
+
+                Coordinates getCoordinates = reader.getUserCoordinates(questionShip);
+                String direction = this.reader.getStringFromUser("Vertically or horizontally (h/v)", "[hv]{1}");
+
+
+                isShipPlaced = playerOne.shipPlacement(getCoordinates, direction, entry.getKey(), entry.getValue());
+                this.view.printMap(playerOne.getOcean().mapToString("ship"));
+            }
+
+        }
+
+
+
+
     }
 
+
     private Player createPlayer(String name) {
-        this.view.printQuestion(name);
-        String player = this.reader.getNameFromUser();
+        String player = this.reader.getNameFromUser(name);
         return new Player(player, this.view);
     }
 
