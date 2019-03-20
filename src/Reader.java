@@ -1,12 +1,12 @@
 import java.util.*;
 
 public class Reader {
-    Scanner reader;
-    Validator validator;
-    ReaderHelper helper;
-    View viewer;
+    private Scanner reader;
+    private Validator validator;
+    private ReaderHelper helper;
+    private View viewer;
 
-    Public Reader(View viewer){
+    public Reader(View viewer){
         this.reader = new Scanner(System.in);
         this.validator = new Validator();
         this.helper = new ReaderHelper();
@@ -57,9 +57,10 @@ public class Reader {
     public Coordinates getUserCoordinates(){
         String userInput = "";
         boolean answerIsCorrect = false;
+        String[] splitInput = new String[2];
         while (!answerIsCorrect){
             userInput = this.readString();
-            String[] splitInput = this.helper.splitCoordinates();
+            splitInput = this.helper.splitCoordinates(userInput);
             if (validator.checkCoordinates(splitInput)){
                 answerIsCorrect = true;
             } else {
