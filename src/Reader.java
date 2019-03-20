@@ -3,10 +3,12 @@ import java.util.*;
 public class Reader {
     Scanner reader;
     Validator validator;
+    ReaderHelper helper;
 
     Public Reader(){
         this.reader = new Scanner(System.in);
         this.validator = new Validator();
+        this.helper = new ReaderHelper();
     }
 
     private String readString(){
@@ -45,8 +47,17 @@ public class Reader {
     }
 
     public Integer getUserCoordinates(){
-        return userInteger2;
-
+        String userInput = "";
+        boolean answerIsCorrect = false;
+        while (!answerIsCorrect){
+            userInput = this.readString();
+            String[] splitInput = this.helper.splitCoordinates();
+            if (validator.checkCoordinates(splitInput)){
+                answerIsCorrect = true;
+            }
+        }
+        int[] convertedCoordinates = this.helper.convertCoordinates(splitInput)
+        return convertedCoordinates;
     }
 
     public int getMenuOption(int start, int end){
