@@ -66,8 +66,7 @@ public class Reader {
                 viewer.printError("Provide valid coordinates");
             }
         }
-        int[] convertedCoordinates = this.helper.convertCoordinates(splitInput);
-        Coordinates coordinates = new Coordinates(convertCoordinates[0], convertCoordinates[1]);
+        Coordinates coordinates = this.helper.convertCoordinates(splitInput);
         return coordinates;
     }
     
