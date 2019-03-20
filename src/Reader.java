@@ -14,10 +14,22 @@ public class Reader {
     }
 
     private String readString(){
-        String userInput = this.reader.nextLine();
-        reader.close();
-        return userInput;
+        return this.reader.nextLine();
 
+    }
+
+    public String getNameFromUser(){
+        String userInput = "";
+        boolean answerIsCorrect = false;
+        while (!answerIsCorrect){
+            userInput = this.readString();
+            if (validator.validateString(userInput)){
+                answerIsCorrect = true;
+            } else {
+                viewer.printError("Provide valid input data");
+            }
+        }
+        return userInput;
     }
 
     public String getStringFromUser(String regex){
