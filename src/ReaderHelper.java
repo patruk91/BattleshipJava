@@ -18,7 +18,6 @@ public class ReaderHelper {
         }
         int numericCoordinate = Integer.parseInt(coordinates[1]) - 1;
         int letterCoordinate = lettersToNumbers.get(coordinates[0]);
-        System.out.println(letterCoordinate + " " + numericCoordinate);
         return new Coordinates(letterCoordinate, numericCoordinate);
     }
 }

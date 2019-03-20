@@ -9,12 +9,14 @@ public class Ship {
     }
 
     public boolean isDestroyed() {
+        int destroyedSquares = 0;
+        int lengthShip = this.shipSquares.size();
         for (Square square: this.shipSquares) {
-            if (square.getMyStatus().equals("S")) {
-                return false;
+            if (square.getMyStatus().equals("X") || square.getMyStatus().equals("#")) {
+                destroyedSquares++;
             }
         }
-        return true;
+        return destroyedSquares == lengthShip;
     }
 
     public void markHit(Square square) {
@@ -28,6 +30,7 @@ public class Ship {
     private void markAsSunk() {
         for (Square square: this.shipSquares) {
             square.setMyStatus("#");
+            square.setOpponentStatus("#");
         }
     }
 }

@@ -1,5 +1,6 @@
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 
 public class Controller {
     private boolean restartGame;
@@ -78,9 +79,36 @@ public class Controller {
         Player playerTwo = createPlayer("Player two: what's is your name");
 
         String placement  = this.reader.getStringFromUser(
-                "Do you want put your ship automatically (y/n)", "[yn]{1}");
+                "Player one: Do you want put your ship automatically (y/n)", "[yn]{1}");
 
         putShipsOnMap(playerOne, placement.equals("y"));
+
+        placement  = this.reader.getStringFromUser(
+                "Player two: Do you want put your ship automatically (y/n)", "[yn]{1}");
+        putShipsOnMap(playerTwo, placement.equals("y"));
+
+        while (!(playerOne.getOcean().isGameOver() || playerTwo.getOcean().isGameOver())) {
+//            Coordinates playerOneCoordinates = reader.getUserCoordinates("Player one: Please provide coordinates");
+            System.out.println("\n\n PLAYER ONE");
+
+            playerTwo.shoot(randomizer.getRandomCoordantes());
+            view.printMap(playerTwo.getOcean().mapToString("shoot"));
+
+//            try
+//            {
+//                Thread.sleep(1000);
+//            }
+//            catch(InterruptedException ex)
+//            {
+//                Thread.currentThread().interrupt();
+//            }
+
+            System.out.println("\n\n PLAYER TWO");
+//            Coordinates playerTwoCoordinates = reader.getUserCoordinates("Player two: Please provide coordinates");
+            playerOne.shoot(randomizer.getRandomCoordantes());
+            view.printMap(playerOne.getOcean().mapToString("shoot"));
+
+        }
 
 
 
