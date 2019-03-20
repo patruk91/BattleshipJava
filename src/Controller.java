@@ -5,8 +5,7 @@ public class Controller {
 
 
     public void runner() {
-        Ocean ocean = new Ocean();
-        ocean.createSquareMap();
+
 
         for (Map.Entry<String, Integer> entry : shipNames().entrySet()) {
 
