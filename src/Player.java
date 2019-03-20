@@ -1,12 +1,13 @@
 public class Player {
     private Ocean ocean;
     private String name;
-    Reader reader;
+    private View viewer;
 
-    public Player(String name) {
+    public Player(String name, View viewer) {
         this.ocean = new Ocean();
         this.name = name;
         this reader = new Reader();
+        this.viewer = viewer;
     }
 
     public String getName() {
@@ -22,7 +23,9 @@ public class Player {
 
     public void shipPlacement(Coordinates coordinates, String direction, String shipName, int shipLength){
         if (this.ocean.testShipPlacement(coordinates, shipLength, direction)){
-            Ship ship = new Ship(coordinates, this.ocean, direction, shipLength, shipName)
+            List<Square> shipSquares = getShipSquares(coordinates, direction, shipLength, shipName);
+            Ship ship = new Ship(shipSquares);
+            this.ocean.add(shipName, ship);
         }
     }
 
@@ -31,7 +34,7 @@ public class Player {
         int y = coordinates.getY();
         List<Square> shipSquares = new ArrayList<Square>();
         for (int i = 0; i < shipLength; i++) {
-            shipSquares.add(ocean.getSquare(x, y));
+            shipSquares.add(this.ocean.getSquare(x, y));
             this.ocean.getSquare(x, y).setMyStatus("S");
             this.ocean.getSquare(x, y).setShipName(shipName);
             if (direction.equalsIgnoreCase("h")) {
@@ -40,6 +43,7 @@ public class Player {
                 x++;
             }
         }
+        return shipSquares;
     }
 
     
