@@ -20,14 +20,14 @@ public class Controller {
 
 
         while (!this.restartGame) {
-            handleMainOption(reader, view, firstPlayer);
+            handleMainOption(reader, view);
 
 
         }
 
     }
 
-    private void handleMainOption(Reader reader, View view, Player firstPlayer) {
+    private void handleMainOption(Reader reader, View view) {
         view.printMenu();
         view.printQuestion("Option");
         int option = reader.getIntFromUser(1, 4);
@@ -43,7 +43,6 @@ public class Controller {
                 break;
             case 4:
                 this.restartGame = true;
-                firstPlayer.getOcean().setIsGameOver(true);
                 break;
 
         }
@@ -79,6 +78,8 @@ public class Controller {
                 break;
         }
     }
+
+
 
 
 }
