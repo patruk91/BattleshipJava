@@ -23,8 +23,10 @@ public class Player {
         // make changes on map
     }
 
-    public Ocean shipPlacement(int x, int y, String diretion, Ocean ocean, String shipName){
-        return this.ocean;
+    public void shipPlacement(Coordinates coordinates, String direction, String shipName, int shipLength){
+        if (this.ocean.testShipPlacement(coordinates, shipLength, direction)){
+            Ship ship = new Ship(coordinates, this.ocean, direction, shipLength, shipName)
+        }
     }
 
     
