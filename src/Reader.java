@@ -6,11 +6,11 @@ public class Reader {
     ReaderHelper helper;
     View viewer;
 
-    Public Reader(){
+    Public Reader(View viewer){
         this.reader = new Scanner(System.in);
         this.validator = new Validator();
         this.helper = new ReaderHelper();
-        this.viewer = new Viewer();
+        this.viewer = viewer;
     }
 
     private String readString(){
