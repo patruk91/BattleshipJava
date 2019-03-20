@@ -17,7 +17,7 @@ public class Controller {
 
     public void runner() {
         while (!this.restartGame) {
-            handleMainOption(reader, view);
+            handleMainOption();
         }
     }
 
@@ -75,13 +75,14 @@ public class Controller {
 
     private void playerVsPlayer() {
 
-        this.view.printQuestion("Player one: what's is your name");
-        this.reader.
+        Player playerOne = createPlayer("Player one: what's is your name");
+        Player playerTwo = createPlayer("Player two: what's is your name");
+    }
 
-        Player playerOne = new Player()
-
-        this.view.printQuestion("Player two: what's is your name");
-
+    private Player createPlayer(String name) {
+        this.view.printQuestion(name);
+        String player = this.reader.getNameFromUser();
+        return new Player(player, this.view);
     }
 
 
