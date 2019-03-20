@@ -7,7 +7,8 @@ public class View {
         System.out.println("Main menu:\n" +
                            "1. New game\n" +
                            "2. High score\n" +
-                           "3. Credits");
+                           "3. Credits\n" +
+                           "4. Exit");
     }
 
     public void printGameModes() {
