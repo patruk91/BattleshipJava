@@ -18,10 +18,11 @@ public class Reader {
     }
 
 
-    public String getNameFromUser(){
+    public String getNameFromUser(String question){
         String userInput = "";
         boolean answerIsCorrect = false;
         while (!answerIsCorrect){
+            this.viewer.printQuestion(question);
             userInput = this.readString();
             if (validator.validateString(userInput)){
                 answerIsCorrect = true;
@@ -32,10 +33,11 @@ public class Reader {
         return userInput;
     }
 
-    public String getStringFromUser(String regex){
+    public String getStringFromUser(String question, String regex){
         String userInput = "";
         boolean answerIsCorrect = false;
         while (!answerIsCorrect){
+            this.viewer.printQuestion(question);
             userInput = this.readString();
             if (validator.validateString(userInput) && validator.validateStringInRange(userInput, regex)){
                 answerIsCorrect = true;
@@ -46,11 +48,12 @@ public class Reader {
         return userInput;
     }
 
-    public Integer getIntFromUser(int start, int end){
+    public Integer getIntFromUser(String question, int start, int end){
         String userInput = "";
         int userInteger = 0;
         boolean answerIsCorrect = false;
         while (!answerIsCorrect){
+            this.viewer.printQuestion(question);
             userInput = this.readString();
             if (validator.isNumeric(userInput)){
                 userInteger = Integer.parseInt(userInput);
@@ -66,11 +69,12 @@ public class Reader {
         return userInteger;
     }
 
-    public Coordinates getUserCoordinates(){
+    public Coordinates getUserCoordinates(String question){
         String userInput = "";
         boolean answerIsCorrect = false;
         String[] splitInput = new String[2];
         while (!answerIsCorrect){
+            this.viewer.printQuestion(question);
             userInput = this.readString();
             splitInput = this.helper.splitCoordinates(userInput);
             if (validator.checkCoordinates(splitInput)){
