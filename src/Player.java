@@ -1,17 +1,15 @@
 public class Player {
-    Ocean ocean;
-    String name;
-    Reader reader = new Reader();
+    private Ocean ocean;
+    private String name;
+    Reader reader;
 
-    public Player() {
+    public Player(String name) {
         this.ocean = new Ocean();
         this.name = name;
-        
+        this reader = new Reader();
     }
 
     public String getName() {
-        System.out.println("Hey, what's your name?");
-        this.name = reader.getStringFromUser();
         return this.name;
     }
 
