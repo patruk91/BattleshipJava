@@ -2,21 +2,31 @@ import java.util.*;
 
 public class Reader {
     Scanner reader = new Scanner(System.in);
+    
 
-    public readString(){
-        // return string        
+    private String readString(){
+        System.out.println("Please provide data: ");
+        String userInput = reader.nextLine();
+        reader.close();
+        return userInput;
+
     }
 
-    public readStringFromUser(){
-        // return strin
+    public String getStringFromUser(){
+        System.out.println("Please provide data: ");
+        String userString = reader.nextLine();
+        reader.close();
+        return userString;
     }
 
-    public readIntFromUser(){
-        // return int
+    public Integer getIntFromUser(){
+        int userInteger = 0;
+        return userInteger;
     }
 
-    public getUserCoordinates(){
-        // return int2
+    public Integer getUserCoordinates(){
+        int userInteger2 = 0;
+        return userInteger2;
 
     }
 
