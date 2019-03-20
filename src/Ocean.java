@@ -41,6 +41,18 @@ public class Ocean {
         return true;
     }
 
+    public void handleShoot(Coordinates coordinates) {
+        Square square = getSquare(coordinates.getX(), coordinates.getY());
+        if (square.getShipName().equals("ocean")) {
+            square.setOpponentStatus("O");
+        } else {
+            this.ships.get(square.getShipName()).markHit(square);
+            if (checkIfAllShipsSunk()) {
+                this.isGameOver = true;
+            }
+        }
+    }
+
     private void addShip(String shipName, Ship ship) {
         this.ships.put(shipName, ship);
     }
