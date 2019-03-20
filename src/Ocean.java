@@ -69,30 +69,24 @@ public class Ocean {
             final int EXTRA_SQUARES = 2;
             int totalLinesToCheck = getLinesToCheck(direction, shipLength, EXTRA_SQUARES);
             int squaresInLineToCheck = getSquaresToCheck(direction, shipLength, EXTRA_SQUARES);
-
-            for (int startY = getStartYPosition(coordinates); startY <= totalLinesToCheck; startY++) {
-                for (int startX = getStartXPosition(coordinates); startX <= squaresInLineToCheck; startX++) {
-                    if (startY > 0 && startX > 0) {
-                        if (!(getSquare(startX, startY).getShipName().equals("ocean"))) {
+            int y = coordinates.getX() - 1;
+            int x = coordinates.getY() - 1;
+            for (int startY = 0; startY < totalLinesToCheck; startY++) {
+                for (int startX = 0; startX < squaresInLineToCheck; startX++) {
+                    if (0 <= y && y <10 && 0 <= x && x < 10) {
+                        if (!(getSquare(y, x).getShipName().equals("ocean"))) {
                             // or StartY, StartX
                             return false;
                         }
                     }
+                    x++;
                 }
+                x = coordinates.getY() - 1;
+                y++;
             }
             return true;
         }
         return false;
-    }
-
-    private int getStartXPosition(Coordinates coordinates) {
-        final int BACK_X_POSITION = 1;
-        return coordinates.getX() - BACK_X_POSITION;
-    }
-
-    private int getStartYPosition(Coordinates coordinates) {
-        final int BACK_Y_POSITION = 1;
-        return coordinates.getY() - BACK_Y_POSITION;
     }
 
     private int getLinesToCheck(String direction, int shipLength, int extraSquares) {
@@ -116,9 +110,9 @@ public class Ocean {
     private boolean checkIfShipInMap(Coordinates coordinates, int length, String direction) {
         final int BORDER = 10;
         if (direction.equalsIgnoreCase("h")) {
-            return (coordinates.getX() + length) < BORDER;
+            return (coordinates.getY() - 1 + length) < BORDER;
         } else if (direction.equalsIgnoreCase("v")) {
-            return (coordinates.getY() + length) < BORDER;
+            return (coordinates.getX() - 1 + length) < BORDER;
         } else {
             return false;
         }
