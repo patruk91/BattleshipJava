@@ -1,35 +1,73 @@
 import java.util.*;
 
 public class Reader {
-    Scanner reader = new Scanner(System.in);
-    
+    Scanner reader;
+    Validator validator;
+    ReaderHelper helper;
+    View viewer;
+
+    Public Reader(View viewer){
+        this.reader = new Scanner(System.in);
+        this.validator = new Validator();
+        this.helper = new ReaderHelper();
+        this.viewer = viewer;
+    }
 
     private String readString(){
-        System.out.println("Please provide data: ");
-        String userInput = reader.nextLine();
+        String userInput = this.reader.nextLine();
         reader.close();
         return userInput;
 
     }
 
-    public String getStringFromUser(){
-        System.out.println("Please provide data: ");
-        String userString = reader.nextLine();
-        reader.close();
-        return userString;
+    public String getStringFromUser(String regex){
+        String userInput = "";
+        boolean answerIsCorrect = false;
+        while (!answerIsCorrect){
+            userInput = this.readString();
+            if (validator.validateString(userInput) && validator.validateStringInRange(userInput, regex)){
+                answerIsCorrect = true;
+            } else {
+                viewer.printError("Provide valid input data");
+            }
+        }
+        return userInput;
     }
 
-    public Integer getIntFromUser(){
+    public Integer getIntFromUser(int start, int end){
+        String userInput = "";
         int userInteger = 0;
+        boolean answerIsCorrect = false;
+        while (!answerIsCorrect){
+            userInput = this.readString();
+            if (validator.isNumeric(userInput)){
+                userInteger = Integer.parseInt(userInput);
+                if (validator.isNumberInRange(start, end, userInteger)){
+                    answerIsCorrect = true;
+                } else {
+                    viewer.printError("Integer needs to be in range of " + start + " and " + end);
+                }
+            } else {
+                viewer.printError("Input needs to be integer");
+            }
+        }
         return userInteger;
     }
 
-    public Integer getUserCoordinates(){
-        int userInteger2 = 0;
-        return userInteger2;
-
+    public Coordinates getUserCoordinates(){
+        String userInput = "";
+        boolean answerIsCorrect = false;
+        while (!answerIsCorrect){
+            userInput = this.readString();
+            String[] splitInput = this.helper.splitCoordinates();
+            if (validator.checkCoordinates(splitInput)){
+                answerIsCorrect = true;
+            } else {
+                viewer.printError("Provide valid coordinates");
+            }
+        }
+        Coordinates coordinates = this.helper.convertCoordinates(splitInput);
+        return coordinates;
     }
-
-
-
+    
 }
