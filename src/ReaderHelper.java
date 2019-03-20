@@ -17,7 +17,7 @@ public class ReaderHelper {
         }
         int numericCoordinate = Integer.parseInt(coordinates[1]);
         int letterCoordinate = lettersToNumbers.get(coordinates[0]);
-        int[] convertedCoordinates = {letterCoordinate, numericCoordinate}
+        int[] convertedCoordinates = {letterCoordinate, numericCoordinate};
         return convertedCoordinates;
     }
 }
