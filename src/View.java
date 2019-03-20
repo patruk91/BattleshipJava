@@ -20,9 +20,16 @@ public class View {
 
     public void printGameDifficulty() {
         System.out.println("Game difficulty:\n" +
-                           "1. Player vs Player\n" +
-                           "2. Player vs Computer\n" +
-                           "3. Computer vs Computer");
+                           "1. Easy\n" +
+                           "2. Medium\n");
+    }
+
+    public void printHighscore() {
+        System.out.println("Highscore");
+    }
+
+    public void printCredits() {
+        System.out.println("Krzysiek\nPatryk\nPaweł");
     }
 
     public void printQuestion(String question) {
