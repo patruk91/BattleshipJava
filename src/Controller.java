@@ -14,19 +14,15 @@ public class Controller {
 
     public void runner() {
         View view = new View();
-        Reader reader = new Reader();
+        Reader reader = new Reader(view);
         ControllerHelper controllerHelper = new ControllerHelper();
-        Player firstPlayer = new Player();
-        Player secondPlayer = new Player();
+
 
 
         while (!this.restartGame) {
             handleMainOption(reader, view, firstPlayer);
 
 
-            while (!(firstPlayer.getOcean().isGameOver() || secondPlayer.getOcean().isGameOver())) {
-
-            }
         }
 
     }
@@ -36,16 +32,16 @@ public class Controller {
         view.printQuestion("Option");
         int option = reader.getIntFromUser(1, 4);
         switch (option) {
-            case 1: option = 1;
+            case 1:
                 handleGameModes(view, reader);
                 break;
-            case 2: option = 2;
+            case 2:
                 view.printHighscore();
                 break;
-            case 3: option = 3;
+            case 3:
                 view.printCredits();
                 break;
-            case 4: option = 4;
+            case 4:
                 this.restartGame = true;
                 firstPlayer.getOcean().setIsGameOver(true);
                 break;
@@ -58,23 +54,31 @@ public class Controller {
         int gameModes = reader.getIntFromUser(1, 3);
         view.printQuestion("Choose your game mode");
         switch (gameModes) {
-            case 1: gameModes = 1;
+            case 1:
                 playerVsPlayer();
                 break;
-            case 2: gameModes = 2;
-                handleGameDifficulty(gameModes);
-                playerVsComputer();
+            case 2:
+                handleGameDifficulty(view, reader, gameModes);
                 break;
-            case 3: gameModes = 3;
-                handleGameDifficulty(gameModes);
-                computerVsComputer();
+            case 3:
+                handleGameDifficulty(view, reader, gameModes);
                 break;
         }
     }
 
-    private void handleGameDifficulty(int gameModes) {
+    private void handleGameDifficulty(View view, Reader reader, int gameModes) {
+        view.printGameDifficulty();
+        int gameDifficulty = reader.getIntFromUser(1, 2);
 
-
+        switch (gameModes) {
+            case 2:
+                playerVsComputer(gameDifficulty);
+                break;
+            case 3:
+                computerVsComputer(gameDifficulty);
+                break;
+        }
     }
+
 
 }
