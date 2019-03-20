@@ -11,14 +11,14 @@ public class View {
     }
 
     public void printGameModes() {
-        System.out.println("Game modes:" +
+        System.out.println("Game modes:\n" +
                            "1. Player vs Player\n" +
                            "2. Player vs Computer\n" +
                            "3. Computer vs Computer");
     }
 
     public void printGameDifficulty() {
-        System.out.println("Game difficulty:" +
+        System.out.println("Game difficulty:\n" +
                            "1. Player vs Player\n" +
                            "2. Player vs Computer\n" +
                            "3. Computer vs Computer");
