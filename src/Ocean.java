@@ -42,6 +42,10 @@ public class Ocean {
         return true;
     }
 
+    private void addShip(String shipName, Ship ship) {
+        this.ships.put(shipName, ship);
+    }
+
     public void changeGameStatus() {
         if (checkIfAllShipsSunk()) {
             setIsGameOver(true);
