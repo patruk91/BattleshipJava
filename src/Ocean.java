@@ -53,7 +53,7 @@ public class Ocean {
         }
     }
 
-    private void addShip(String shipName, Ship ship) {
+    public void addShip(String shipName, Ship ship) {
         this.ships.put(shipName, ship);
     }
 

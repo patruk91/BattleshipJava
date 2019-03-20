@@ -20,7 +20,7 @@ public class Player {
         return this.ocean;
     }
 
-    public void shoot(String coordinates){
+    public void shoot(Coordinates coordinates){
         this.ocean.handleShoot(coordinates);
     }
 
@@ -28,7 +28,7 @@ public class Player {
         if (this.ocean.testShipPlacement(coordinates, shipLength, direction)){
             List<Square> shipSquares = getShipSquares(coordinates, direction, shipLength, shipName);
             Ship ship = new Ship(shipSquares);
-            this.ocean.add(shipName, ship);
+            this.ocean.addShip(shipName, ship);
         } else {
             viewer.printError("Ship cannot be placed");
         }
