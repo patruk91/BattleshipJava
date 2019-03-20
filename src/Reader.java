@@ -4,11 +4,13 @@ public class Reader {
     Scanner reader;
     Validator validator;
     ReaderHelper helper;
+    View viewer;
 
     Public Reader(){
         this.reader = new Scanner(System.in);
         this.validator = new Validator();
         this.helper = new ReaderHelper();
+        this.viewer = new Viewer();
     }
 
     private String readString(){
@@ -25,6 +27,8 @@ public class Reader {
             userInput = this.readString();
             if (validator.validateString(userInput) && validator.validateStringInRange(userInput, regex)){
                 answerIsCorrect = true;
+            } else {
+                viewer.printError("Provide valid input data");
             }
         }
         return userInput;
@@ -40,7 +44,11 @@ public class Reader {
                 userInteger = Integer.parseInt(userInput);
                 if (validator.isNumberInRange(start, end, userInteger)){
                     answerIsCorrect = true;
+                } else {
+                    viewer.printError("Integer needs to be in range of " + start + " and " + end);
                 }
+            } else {
+                viewer.printError("Input needs to be integer");
             }
         }
         return userInteger;
@@ -54,16 +62,12 @@ public class Reader {
             String[] splitInput = this.helper.splitCoordinates();
             if (validator.checkCoordinates(splitInput)){
                 answerIsCorrect = true;
+            } else {
+                viewer.printError("Provide valid coordinates");
             }
         }
         int[] convertedCoordinates = this.helper.convertCoordinates(splitInput)
         return convertedCoordinates;
     }
-
-    public int getMenuOption(int start, int end){
-
-    }
-
-
-
+    
 }
