@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Ocean {
@@ -42,20 +41,24 @@ public class Ocean {
         return true;
     }
 
+    private void addShip(String shipName, Ship ship) {
+        this.ships.put(shipName, ship);
+    }
+
     public void changeGameStatus() {
         if (checkIfAllShipsSunk()) {
             setIsGameOver(true);
         }
     }
 
-    public boolean testShipPlacement(int x, int y, int shipLength, String direction) {
-        if (checkIfShipInMap(x, y, shipLength, direction)) {
+    public boolean testShipPlacement(Coordinates coordinates, int shipLength, String direction) {
+        if (checkIfShipInMap(coordinates, shipLength, direction)) {
             final int EXTRA_SQUARES = 2;
             int totalLinesToCheck = getLinesToCheck(direction, shipLength, EXTRA_SQUARES);
             int squaresInLineToCheck = getSquaresToCheck(direction, shipLength, EXTRA_SQUARES);
 
-            for (int startY = getStartYPosition(y); startY <= totalLinesToCheck; startY++) {
-                for (int startX = getStartXPosition(x); startX <= squaresInLineToCheck; startX++) {
+            for (int startY = getStartYPosition(coordinates); startY <= totalLinesToCheck; startY++) {
+                for (int startX = getStartXPosition(coordinates); startX <= squaresInLineToCheck; startX++) {
                     if (!((startY) < 0 && (startX) < 0)) {
                         if (!(getSquare(startX, startY).getShipName().equals("ocean"))) {
                             // or StartY, StartX
@@ -69,14 +72,14 @@ public class Ocean {
         return false;
     }
 
-    private int getStartXPosition(int x) {
+    private int getStartXPosition(Coordinates coordinates) {
         final int BACK_X_POSITION = 1;
-        return x - BACK_X_POSITION;
+        return coordinates.getX() - BACK_X_POSITION;
     }
 
-    private int getStartYPosition(int y) {
+    private int getStartYPosition(Coordinates coordinates) {
         final int BACK_Y_POSITION = 1;
-        return y - BACK_Y_POSITION;
+        return coordinates.getY() - BACK_Y_POSITION;
     }
 
     private int getLinesToCheck(String direction, int shipLength, int extraSquares) {
@@ -97,12 +100,12 @@ public class Ocean {
         }
     }
 
-    private boolean checkIfShipInMap(int x, int y, int length, String direction) {
+    private boolean checkIfShipInMap(Coordinates coordinates, int length, String direction) {
         final int BORDER = 10;
         if (direction.equalsIgnoreCase("h")) {
-            return (x + length) < BORDER;
+            return (coordinates.getX() + length) < BORDER;
         } else if (direction.equalsIgnoreCase("v")) {
-            return (y + length) < BORDER;
+            return (coordinates.getY() + length) < BORDER;
         } else {
             return false;
         }
