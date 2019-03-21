@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class EasyAI extends Player {
+public class EasyAI extends AI {
     private List<Coordinates> possibleShoots;
 
     public EasyAI(String name, View viewer) {
@@ -17,7 +17,6 @@ public class EasyAI extends Player {
             }
         }
     }
-
     public Coordinates getRandomCoordinates(Randomizer randomizer) {
         int shootListIndex = randomizer.getRandomDigitFromParamter(possibleShoots.size());
         return this.possibleShoots.get(shootListIndex);
