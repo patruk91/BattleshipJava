@@ -92,8 +92,15 @@ public class Controller {
         while (!(playerOne.getOcean().isGameOver() || computerTwo.getOcean().isGameOver())) {
             playerComputerShoot(playerOne, computerTwo);
             computerPlayerShoot(computerTwo, playerOne);
-
+            if (!playerOne.getOcean().isGameOver()) {
+                playerComputerShoot(playerOne, computerTwo);
+                view.printLine(playerOne.getName() + " WON!");
+            } else {
+                view.printLine(computerTwo.getName() + " WON!");
+                computerPlayerShoot(computerTwo, playerOne);
+            }
         }
+
         reader.promptEnterKey();
     }
 
@@ -129,7 +136,17 @@ public class Controller {
         while (!(playerOne.getOcean().isGameOver() || playerTwo.getOcean().isGameOver())) {
             playerShoot(playerTwo, playerOne);
             playerShoot(playerOne, playerTwo);
+
+            if (!playerOne.getOcean().isGameOver()) {
+                playerShoot(playerTwo, playerOne);
+                view.printLine(playerOne.getName() + " WON!");
+            } else {
+                playerShoot(playerOne, playerTwo);
+                view.printLine(playerTwo.getName() + " WON!");
+
+            }
         }
+
     }
 
     private void computerVsComputer(int gameDifficulty) {
@@ -145,7 +162,18 @@ public class Controller {
         while (!(computerOne.getOcean().isGameOver() || computerTwo.getOcean().isGameOver())) {
             computerShoot(computerTwo, computerOne);
             computerShoot(computerOne, computerTwo);
+
+            if (!computerOne.getOcean().isGameOver()) {
+                computerShoot(computerTwo, computerOne);
+                view.printLine(computerOne.getName() + " WON!");
+
+            } else {
+                computerShoot(computerOne, computerTwo);
+                view.printLine(computerTwo.getName() + " WON!");
+
+            }
         }
+
         reader.promptEnterKey();
     }
 
@@ -159,7 +187,7 @@ public class Controller {
         printMap(playerShoot, playerShip);
 
 
-        sleep(1000);
+        sleep(1);
         if (!(playerShoot.getOcean().isGameOver() || playerShip.getOcean().isGameOver())) {
             this.controllerHelper.clearScreen();
 
