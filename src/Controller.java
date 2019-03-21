@@ -78,6 +78,44 @@ public class Controller {
         }
     }
 
+
+    private void playerVsComputer(int gameDifficulty) {
+        this.controllerHelper.clearScreen();
+        Player playerOne = createPlayer("Player one: what's is your name");
+        putShipsOnMap(playerOne, true);
+
+        this.controllerHelper.clearScreen();
+        AI computerTwo = createComputer(gameDifficulty, "computer2");
+        putShipsOnMap(computerTwo, false);
+
+        this.controllerHelper.clearScreen();
+        while (!(playerOne.getOcean().isGameOver() || computerTwo.getOcean().isGameOver())) {
+            playerComputerShoot(playerOne, computerTwo);
+            computerPlayerShoot(computerTwo, playerOne);
+
+        }
+        reader.promptEnterKey();
+    }
+
+    private void computerPlayerShoot(AI playerShoot, Player playerShip) {
+        this.controllerHelper.clearScreen();
+        printMap(playerShoot, playerShip);
+        Coordinates playerOneCoordinates = playerShoot.getRandomCoordinates(this.randomizer);
+        playerShoot.shoot(playerOneCoordinates);
+
+    }
+
+    private void playerComputerShoot(Player playerShoot, AI playerShip) {
+        this.controllerHelper.clearScreen();
+        printMap(playerShoot, playerShip);
+        Coordinates playerOneCoordinates = reader.getUserCoordinates("Player " + playerShoot.getName() + ": Please provide coordinates");
+        playerShoot.shoot(playerOneCoordinates);
+
+        this.controllerHelper.clearScreen();
+        printMap(playerShoot, playerShip);
+
+    }
+
     private void playerVsPlayer() {
         this.controllerHelper.clearScreen();
         Player playerOne = createPlayer("Player one: what's is your name");
