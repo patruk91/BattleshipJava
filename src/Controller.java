@@ -230,6 +230,7 @@ public class Controller {
                     String questionShip = "Please provide a coordinate for " + entry.getKey() + ", length: " + entry.getValue() + " (e.g A1)";
                     getCoordinates = reader.getUserCoordinates(questionShip);
                     direction = this.reader.getStringFromUser("Vertically or horizontally (h/v)", "[hv]{1}");
+                    this.controllerHelper.clearScreen();
                 }
 
                 isShipPlaced = player.shipPlacement(getCoordinates, direction, entry.getKey(), entry.getValue(), automate);
