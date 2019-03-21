@@ -122,6 +122,11 @@ public class Ocean {
         StringBuilder stringBuilder = new StringBuilder();
         char[] alphabet  = "ABCDEFGHIJ".toCharArray();
 
+        if (view.equals("ship")) {
+            stringBuilder.append(" ".repeat(16) + "YOUR SHIPS" + " ".repeat(16) + "\n");
+        } else {
+            stringBuilder.append(" ".repeat(15) + "YOUR SHOOTS" + " ".repeat(15) + "\n");
+        }
 
         for (int i = 1; i < 11; i++) {
             stringBuilder.append(" | " + i);

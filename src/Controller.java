@@ -93,27 +93,26 @@ public class Controller {
 
         this.controllerHelper.clearScreen();
         while (!(playerOne.getOcean().isGameOver() || playerTwo.getOcean().isGameOver())) {
-
-            this.controllerHelper.clearScreen();
-            showMaps(playerTwo, playerOne);
-            reader.promptEnterKey();
-            this.controllerHelper.clearScreen();
-            showMaps(playerOne, playerTwo);
-            reader.promptEnterKey();
-            this.controllerHelper.clearScreen();
+            playerShoot(playerTwo, playerOne);
+            playerShoot(playerOne, playerTwo);
         }
     }
 
-    private void showMaps(Player playerShoot, Player playerShip) {
+    private void playerShoot(Player playerShoot, Player playerShip) {
+        this.controllerHelper.clearScreen();
         printMap(playerShoot, playerShip);
         Coordinates playerOneCoordinates = reader.getUserCoordinates("Player " + playerShip.getName() + ": Please provide coordinates");
         playerShoot.shoot(playerOneCoordinates);
+
         this.controllerHelper.clearScreen();
         printMap(playerShoot, playerShip);
+
+        reader.promptEnterKey();
+        this.controllerHelper.clearScreen();
     }
 
     private void printMap(Player playerShoot, Player playerShip) {
-        System.out.println("\n PLAYER " + playerShip.getName());
+        System.out.println("\n PLAYER: " + playerShip.getName());
         String playerOneShootPlayerTwo = playerShoot.getOcean().mapToString("shoot");
         String playerOneShips = playerShip.getOcean().mapToString("ship");
         this.view.printMap(this.controllerHelper.joinMaps(playerOneShootPlayerTwo, playerOneShips));
