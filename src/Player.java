@@ -20,8 +20,8 @@ public class Player {
         return this.ocean;
     }
 
-    public void shoot(Coordinates coordinates){
-        this.ocean.handleShoot(coordinates);
+    public boolean shoot(Coordinates coordinates){
+        return this.ocean.handleShoot(coordinates);
     }
 
     public boolean shipPlacement(Coordinates coordinates, String direction, String shipName, int shipLength, boolean automate){
