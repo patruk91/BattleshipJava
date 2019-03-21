@@ -18,4 +18,9 @@ public class Randomizer {
         String direction = (directionInt < 1)? "h" : "v";
         return direction;
     }
+
+    public int getRandomDigitFromParamter(int paramater) {
+        return this.random.nextInt(paramater);
+
+    }
 }
