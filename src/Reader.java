@@ -83,7 +83,7 @@ public class Reader {
             this.viewer.printQuestion(question);
             userInput = this.readString();
             splitInput = this.helper.splitCoordinates(userInput);
-            if (userInput.length() == 2 && validator.checkCoordinates(splitInput)){
+            if ((userInput.length() >= 2 && userInput.length() <= 3)  && validator.checkCoordinates(splitInput)){
                 answerIsCorrect = true;
             } else {
                 viewer.printError("Provide valid coordinates");
