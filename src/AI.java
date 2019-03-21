@@ -18,5 +18,13 @@ public abstract class AI extends Player {
         }
     }
 
+    public List<Coordinates> getPossibleShoots() {
+        return this.possibleShoots;
+    }
+
+    public void removeUsedCoordinates(int index) {
+        this.possibleShoots.remove(index);
+    }
+
     public abstract Coordinates getRandomCoordinates(Randomizer randomizer);
 }
