@@ -105,6 +105,9 @@ public class Controller {
 
         reader.promptEnterKey();
         this.controllerHelper.clearScreen();
+
+        reader.promptEnterKey();
+        this.controllerHelper.clearScreen();
     }
 
     private void printMap(Player playerShoot, Player playerShip) {
