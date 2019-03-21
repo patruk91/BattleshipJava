@@ -70,10 +70,10 @@ public class Controller {
 
         switch (gameModes) {
             case 2:
-//                playerVsComputer(gameDifficulty);
+                playerVsComputer(gameDifficulty);
                 break;
             case 3:
-//                computerVsComputer(gameDifficulty);
+                computerVsComputer(gameDifficulty);
                 break;
         }
     }
@@ -81,16 +81,50 @@ public class Controller {
     private void playerVsPlayer() {
         this.controllerHelper.clearScreen();
         Player playerOne = createPlayer("Player one: what's is your name");
-        putShipsOnMap(playerOne);
+        putShipsOnMap(playerOne, true);
 
         this.controllerHelper.clearScreen();
         Player playerTwo = createPlayer("Player two: what's is your name");
-        putShipsOnMap(playerTwo);
+        putShipsOnMap(playerTwo, true);
 
         this.controllerHelper.clearScreen();
         while (!(playerOne.getOcean().isGameOver() || playerTwo.getOcean().isGameOver())) {
             playerShoot(playerTwo, playerOne);
             playerShoot(playerOne, playerTwo);
+        }
+    }
+
+    private void computerVsComputer(int gameDifficulty) {
+        this.controllerHelper.clearScreen();
+        AI computerOne = createComputer(gameDifficulty, "computer1");
+        putShipsOnMap(computerOne, false);
+
+        this.controllerHelper.clearScreen();
+        AI computerTwo = createComputer(gameDifficulty, "computer2");
+        putShipsOnMap(computerTwo, false);
+
+        this.controllerHelper.clearScreen();
+        while (!(computerOne.getOcean().isGameOver() || computerTwo.getOcean().isGameOver())) {
+            computerShoot(computerTwo, computerOne);
+            computerShoot(computerOne, computerTwo);
+        }
+        reader.promptEnterKey();
+    }
+
+    private void computerShoot(AI playerShoot, AI playerShip) {
+        this.controllerHelper.clearScreen();
+        printMap(playerShoot, playerShip);
+        Coordinates playerOneCoordinates = playerShoot.getRandomCoordinates(this.randomizer);
+        playerShoot.shoot(playerOneCoordinates);
+
+        this.controllerHelper.clearScreen();
+        printMap(playerShoot, playerShip);
+
+
+        sleep(1000);
+        if (!(playerShoot.getOcean().isGameOver() || playerShip.getOcean().isGameOver())) {
+            this.controllerHelper.clearScreen();
+
         }
     }
 
@@ -128,10 +162,17 @@ public class Controller {
             }
     }
 
-    private void putShipsOnMap(Player player) {
-        String placement  = this.reader.getStringFromUser(
-                "Player " + player.getName() + ": Do you want put your ship automatically (y/n)", "[yn]{1}");
-        boolean automate = placement.equals("y");
+    private void putShipsOnMap(Player player, boolean isPlayer) {
+        boolean automate = false;
+        if (isPlayer) {
+            String placement  = this.reader.getStringFromUser(
+                    "Player " + player.getName() + ": Do you want put your ship automatically (y/n)", "[yn]{1}");
+            automate = placement.equals("y");
+        } else {
+            automate = true;
+
+        }
+
 
         Coordinates getCoordinates = randomizer.getRandomCoordantes();
         String direction = randomizer.getRandomDirection();
@@ -170,6 +211,18 @@ public class Controller {
     private Player createPlayer(String name) {
         String player = this.reader.getNameFromUser(name);
         return new Player(player, this.view);
+    }
+
+    private AI createComputer(int difficulty, String computerName) {
+        if (difficulty == 1) {
+            return new EasyAI(computerName, this.view);
+        } else if (difficulty == 2) {
+            return new MediumAI(computerName, this.view);
+        } else {
+            return new EasyAI(computerName, this.view);
+        }
+
+
     }
 
 
