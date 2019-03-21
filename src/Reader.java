@@ -73,18 +73,17 @@ public class Reader {
         String userInput = "";
         boolean answerIsCorrect = false;
         String[] splitInput = new String[2];
-        while (!answerIsCorrect){
+        while (!(answerIsCorrect)){
             this.viewer.printQuestion(question);
             userInput = this.readString();
             splitInput = this.helper.splitCoordinates(userInput);
-            if (validator.checkCoordinates(splitInput)){
+            if (userInput.length() == 2 && validator.checkCoordinates(splitInput)){
                 answerIsCorrect = true;
             } else {
                 viewer.printError("Provide valid coordinates");
             }
         }
-        Coordinates coordinates = this.helper.convertCoordinates(splitInput);
-        return coordinates;
+        return this.helper.convertCoordinates(splitInput);
     }
     
 }

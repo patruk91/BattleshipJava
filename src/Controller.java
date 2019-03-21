@@ -88,10 +88,10 @@ public class Controller {
         putShipsOnMap(playerTwo, placement.equals("y"));
 
         while (!(playerOne.getOcean().isGameOver() || playerTwo.getOcean().isGameOver())) {
-//            Coordinates playerOneCoordinates = reader.getUserCoordinates("Player one: Please provide coordinates");
+            Coordinates playerOneCoordinates = reader.getUserCoordinates("Player one: Please provide coordinates");
             System.out.println("\n\n PLAYER ONE");
 
-            playerTwo.shoot(randomizer.getRandomCoordantes());
+            playerTwo.shoot(playerOneCoordinates);
             view.printMap(playerTwo.getOcean().mapToString("shoot"));
 
 //            try
@@ -104,14 +104,11 @@ public class Controller {
 //            }
 
             System.out.println("\n\n PLAYER TWO");
-//            Coordinates playerTwoCoordinates = reader.getUserCoordinates("Player two: Please provide coordinates");
-            playerOne.shoot(randomizer.getRandomCoordantes());
+            Coordinates playerTwoCoordinates = reader.getUserCoordinates("Player two: Please provide coordinates");
+            playerOne.shoot(playerTwoCoordinates);
             view.printMap(playerOne.getOcean().mapToString("shoot"));
 
         }
-
-
-
     }
 
     private void putShipsOnMap(Player player, boolean automate) {
