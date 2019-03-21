@@ -38,6 +38,7 @@ public class Controller {
                 break;
             case 3:
                 this.view.printCredits();
+                reader.promptEnterKey();
                 break;
             case 4:
                 this.restartGame = true;
@@ -187,7 +188,7 @@ public class Controller {
         printMap(playerShoot, playerShip);
 
 
-        sleep(1);
+        sleep(100);
         if (!(playerShoot.getOcean().isGameOver() || playerShip.getOcean().isGameOver())) {
             this.controllerHelper.clearScreen();
 
