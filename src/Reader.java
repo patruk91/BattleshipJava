@@ -17,6 +17,12 @@ public class Reader {
         return this.reader.nextLine();
     }
 
+    public void promptEnterKey(){
+        viewer.printLine("Press 'ENTER' to continue...");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+    }
+
 
     public String getNameFromUser(String question){
         String userInput = "";

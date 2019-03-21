@@ -25,8 +25,10 @@ public class Controller {
     }
 
     private void handleMainOption() {
+        this.controllerHelper.clearScreen();
         this.view.printMenu();
         int option = this.reader.getIntFromUser("Option", 1, 4);
+        this.controllerHelper.clearScreen();
         switch (option) {
             case 1:
                 handleGameModes();
@@ -47,6 +49,7 @@ public class Controller {
     private void handleGameModes() {
         this.view.printGameModes();
         int gameModes = this.reader.getIntFromUser("Choose your game mode", 1, 3);
+        this.controllerHelper.clearScreen();
         switch (gameModes) {
             case 1:
                 playerVsPlayer();
@@ -62,7 +65,8 @@ public class Controller {
 
     private void handleGameDifficulty(int gameModes) {
         this.view.printGameDifficulty();
-        int gameDifficulty = this.reader.getIntFromUser("Choose your game difficulty", 1, 2);
+        int gameDifficulty = this.reader.getIntFromUser("Choose your game difficulty", 1, 3);
+        this.controllerHelper.clearScreen();
 
         switch (gameModes) {
             case 2:
@@ -75,40 +79,55 @@ public class Controller {
     }
 
     private void playerVsPlayer() {
+        this.controllerHelper.clearScreen();
         Player playerOne = createPlayer("Player one: what's is your name");
-        Player playerTwo = createPlayer("Player two: what's is your name");
-
         String placement  = this.reader.getStringFromUser(
                 "Player one: Do you want put your ship automatically (y/n)", "[yn]{1}");
-
         putShipsOnMap(playerOne, placement.equals("y"));
 
+        this.controllerHelper.clearScreen();
+        Player playerTwo = createPlayer("Player two: what's is your name");
         placement  = this.reader.getStringFromUser(
                 "Player two: Do you want put your ship automatically (y/n)", "[yn]{1}");
         putShipsOnMap(playerTwo, placement.equals("y"));
 
+        this.controllerHelper.clearScreen();
         while (!(playerOne.getOcean().isGameOver() || playerTwo.getOcean().isGameOver())) {
-            Coordinates playerOneCoordinates = reader.getUserCoordinates("Player one: Please provide coordinates");
-            System.out.println("\n\n PLAYER ONE");
 
-            playerTwo.shoot(playerOneCoordinates);
-            view.printMap(playerTwo.getOcean().mapToString("shoot"));
-
-//            try
-//            {
-//                Thread.sleep(1000);
-//            }
-//            catch(InterruptedException ex)
-//            {
-//                Thread.currentThread().interrupt();
-//            }
-
-            System.out.println("\n\n PLAYER TWO");
-            Coordinates playerTwoCoordinates = reader.getUserCoordinates("Player two: Please provide coordinates");
-            playerOne.shoot(playerTwoCoordinates);
-            view.printMap(playerOne.getOcean().mapToString("shoot"));
-
+            this.controllerHelper.clearScreen();
+            showMaps(playerTwo, playerOne);
+            reader.promptEnterKey();
+            this.controllerHelper.clearScreen();
+            showMaps(playerOne, playerTwo);
+            reader.promptEnterKey();
+            this.controllerHelper.clearScreen();
         }
+    }
+
+    private void showMaps(Player playerShoot, Player playerShip) {
+        printMap(playerShoot, playerShip);
+        Coordinates playerOneCoordinates = reader.getUserCoordinates("Player " + playerShip.getName() + ": Please provide coordinates");
+        playerShoot.shoot(playerOneCoordinates);
+        this.controllerHelper.clearScreen();
+        printMap(playerShoot, playerShip);
+    }
+
+    private void printMap(Player playerShoot, Player playerShip) {
+        System.out.println("\n PLAYER " + playerShip.getName());
+        String playerOneShootPlayerTwo = playerShoot.getOcean().mapToString("shoot");
+        String playerOneShips = playerShip.getOcean().mapToString("ship");
+        this.view.printMap(this.controllerHelper.joinMaps(playerOneShootPlayerTwo, playerOneShips));
+    }
+
+    private void sleep(int delay) {
+                    try
+            {
+                Thread.sleep(delay);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
     }
 
     private void putShipsOnMap(Player player, boolean automate) {

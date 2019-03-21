@@ -43,4 +43,8 @@ public class View {
     public void printMap(String map) {
         System.out.println(map);
     }
+
+    public void printLine(String line) {
+        System.out.println(line);
+    }
 }

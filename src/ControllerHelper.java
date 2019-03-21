@@ -19,4 +19,21 @@ public class ControllerHelper {
         return shipNames;
     }
 
+    public String joinMaps(String mapShoots, String mapShips) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String[] mapShootsArr = mapShoots.split("\n");
+        String[] mapShipsArr = mapShips.split("\n");
+
+        for (int i = 0; i < mapShipsArr.length; i++) {
+            stringBuilder.append(mapShootsArr[i] + " ".repeat(10) +  mapShipsArr[i] + "\n");
+        }
+        return stringBuilder.toString();
+
+    }
+
+    public void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
 }
