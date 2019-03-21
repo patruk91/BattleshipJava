@@ -81,15 +81,11 @@ public class Controller {
     private void playerVsPlayer() {
         this.controllerHelper.clearScreen();
         Player playerOne = createPlayer("Player one: what's is your name");
-        String placement  = this.reader.getStringFromUser(
-                "Player one: Do you want put your ship automatically (y/n)", "[yn]{1}");
-        putShipsOnMap(playerOne, placement.equals("y"));
+        putShipsOnMap(playerOne);
 
         this.controllerHelper.clearScreen();
         Player playerTwo = createPlayer("Player two: what's is your name");
-        placement  = this.reader.getStringFromUser(
-                "Player two: Do you want put your ship automatically (y/n)", "[yn]{1}");
-        putShipsOnMap(playerTwo, placement.equals("y"));
+        putShipsOnMap(playerTwo);
 
         this.controllerHelper.clearScreen();
         while (!(playerOne.getOcean().isGameOver() || playerTwo.getOcean().isGameOver())) {
@@ -129,7 +125,11 @@ public class Controller {
             }
     }
 
-    private void putShipsOnMap(Player player, boolean automate) {
+    private void putShipsOnMap(Player player) {
+        String placement  = this.reader.getStringFromUser(
+                "Player " + player.getName() + ": Do you want put your ship automatically (y/n)", "[yn]{1}");
+        boolean automate = placement.equals("y");
+
         Coordinates getCoordinates = randomizer.getRandomCoordantes();
         String direction = randomizer.getRandomDirection();
 
