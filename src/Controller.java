@@ -85,7 +85,7 @@ public class Controller {
         putShipsOnMap(playerOne, true);
 
         this.controllerHelper.clearScreen();
-        AI computerTwo = createComputer(gameDifficulty, "computer2");
+        AI computerTwo = createComputer(gameDifficulty, playerOne.getName());
         putShipsOnMap(computerTwo, false);
 
         this.controllerHelper.clearScreen();
